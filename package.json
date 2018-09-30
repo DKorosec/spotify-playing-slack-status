@@ -1,0 +1,16 @@
+{
+  "name": "spotify-playing-slack-status",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start" : "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dominik",
+  "license": "ISC",
+  "dependencies": {
+    "request": "2.88.0",
+    "spotify-web-api-node": "^4.0.0"
+  }
+}
