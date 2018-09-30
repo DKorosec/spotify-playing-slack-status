@@ -21,8 +21,8 @@ module.exports = class SpotifyApi {
   }
 
   setAccessToken(token) {
-    this.accessToken = token;
     console.log(new Date(), 'access token set:', token);
+    this.accessToken = token;
     this.spotifyApi.setAccessToken(token);
   }
 
