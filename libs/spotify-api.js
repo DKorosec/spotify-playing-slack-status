@@ -35,8 +35,12 @@ module.exports = class SpotifyApi {
   async _initLongLivingPolling() {
     const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
     while (true) {
-      const { body } = await this.spotifyApi.refreshAccessToken();
-      this.setAccessToken(body['access_token']);
+      try {
+        const { body } = await this.spotifyApi.refreshAccessToken();
+        this.setAccessToken(body['access_token']);
+      } catch (e) {
+        console.log('FAILED TO REFRESH ACCESS TOKEN');
+      }
       await sleep(1000 * 60); //one minute
     }
   }
@@ -44,15 +48,8 @@ module.exports = class SpotifyApi {
   async getAccessFromAuthCode(code) {
     //.createAuthUrl() follow the url, auth with spotify, then parse the ?code= param from url!
     const { body } = await this.spotifyApi.authorizationCodeGrant(code);
-
-
-    //console.log('The token expires in ' + body['expires_in']);
-    //console.log('The access token is ' + body['access_token']);
-    //console.log('The refresh token is ' + body['refresh_token']);
-
     this.setAccessToken(body['access_token']);
     this.spotifyApi.setRefreshToken(body['refresh_token']);
-    this.accessToken = body['access_token'];
     this._initLongLivingPolling();
   }
 
