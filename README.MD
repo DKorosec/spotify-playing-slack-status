@@ -11,4 +11,4 @@ Examples:
 
 > {band} - {songName} [PAUSED]
 
-
+![alt text](https://github.com/DKorosec/spotify-playing-slack-status/blob/master/example.png "Example in action")
