@@ -1,5 +1,5 @@
 create index.js file here.
-```
+```javascript
 /*
 Get slack legacy token here:
 https://api.slack.com/custom-integrations/legacy-tokens
