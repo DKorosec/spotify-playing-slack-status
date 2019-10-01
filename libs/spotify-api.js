@@ -9,7 +9,7 @@ module.exports = class SpotifyApi {
   }
 
   _constructObjectFromPlayerStatusResponse(responseBody) {
-    if (!responseBody.item) {
+    if (!responseBody || !responseBody.item) {
       console.error('RESPONSE BODY MISSING ON 200 RESPONSE (returning null)', responseBody);
       return null;
     }
