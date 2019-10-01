@@ -19,7 +19,7 @@ module.exports = class SlackApi {
             status_text: statusText,
           }
         }
-      }, (error, response, body) => {
+      }, (error, _response, body) => {
         if (error || !body.ok) {
           return resolve(false);
         }

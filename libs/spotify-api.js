@@ -13,8 +13,9 @@ module.exports = class SpotifyApi {
       console.error('RESPONSE BODY MISSING ON 200 RESPONSE (returning null)', responseBody);
       return null;
     }
+    const firstArtist = responseBody.item.artists[0];
     return {
-      artist: responseBody.item.artists[0] && responseBody.item.artists[0].name || '',
+      artist: firstArtist && firstArtist.name || '',
       title: responseBody.item.name,
       isPaused: !responseBody.is_playing,
       progressMs: {
@@ -33,7 +34,7 @@ module.exports = class SpotifyApi {
   createAuthUrl() {
     //under //https://developer.spotify.com/dashboard
     //go to edit settings and add REDIRECT URIs : http://localhost:8888
-    return this.spotifyApi.createAuthorizeURL(['user-read-playback-state'], 'read user\'s playback');
+    return this.spotifyApi.createAuthorizeURL(['user-read-playback-state'], `read user's playback`);
   }
 
   async _initLongLivingPolling() {
@@ -43,7 +44,7 @@ module.exports = class SpotifyApi {
         const { body } = await this.spotifyApi.refreshAccessToken();
         this.setAccessToken(body['access_token']);
       } catch (e) {
-        console.log('FAILED TO REFRESH ACCESS TOKEN');
+        console.log('FAILED TO REFRESH ACCESS TOKEN', e);
       }
       await sleep(1000 * 60); //one minute
     }
