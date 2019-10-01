@@ -11,6 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "request": "2.88.0",
-    "spotify-web-api-node": "^4.0.0"
+    "spotify-web-api-node": "4.0.0"
   }
 }
